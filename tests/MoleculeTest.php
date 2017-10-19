@@ -1,13 +1,6 @@
 <?php
 
 require_once("vendor/autoload.php");
-require_once("vendor/kdaviesnz/atom/src/IBond.php");
-require_once("vendor/kdaviesnz/atom/src/Bond.php");
-require_once("vendor/kdaviesnz/atom/src/IAtomicElement.php");
-require_once("vendor/kdaviesnz/atom/src/AtomicElement.php");
-require_once("vendor/kdaviesnz/atom/src/IAtom.php");
-require_once("vendor/kdaviesnz/atom/src/Atom.php");
-
 require_once("src/IMolecule.php");
 require_once("src/Molecule.php");
 
