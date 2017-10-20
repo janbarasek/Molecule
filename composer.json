@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": "~7.0",
-        "kdaviesnz/atom": "0.0.1"
+        "kdaviesnz/atom": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit" : ">=5.4.3",
