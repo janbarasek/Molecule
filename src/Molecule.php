@@ -3,8 +3,11 @@ declare(strict_types=1); // must be first line
 
 namespace kdaviesnz\molecule;
 
+use kdaviesnz\atom\IAtom;
+use kdaviesnz\matter\Matter;
 
-class Molecule implements IMolecule
+
+class Molecule extends Matter implements IMolecule
 {
 
     /**
