@@ -1,6 +1,6 @@
 <?php
 
-namespace kdaviesnz\chemistry;
+namespace kdaviesnz\molecule;
 
 
 interface IMolecule
