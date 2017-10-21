@@ -7,15 +7,17 @@ use kdaviesnz\atom\IAtom;
 use kdaviesnz\matter\Matter;
 
 
-class Molecule extends Matter implements IMolecule
+class Molecule implements IMolecule
 {
+
+    protected $atoms = array();
 
     /**
      * Molecule constructor.
      */
     public function __construct(IAtom ... $atoms)
     {
-
+        $this->atoms = $atoms;
     }
 
     public function getResonanceStructures():array
@@ -46,5 +48,9 @@ class Molecule extends Matter implements IMolecule
         return false;
     }
 
+    public function getAtoms():array
+    {
+        return $this->atoms;
+    }
 
 }

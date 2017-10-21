@@ -14,4 +14,6 @@ interface IMolecule
 
     public function hasChiralCentre():bool;
 
+    public function getAtoms():array;
+
 }

@@ -3,19 +3,23 @@ declare(strict_types=1); // must be first line
 
 namespace kdaviesnz\molecule;
 
+use kdaviesnz\atom\Atom;
+use kdaviesnz\atom\Bond;
+use kdaviesnz\atom\IHalogen;
 
 class HydrogenHalide extends Molecule implements IHydrogenHalide
 {
-
-
+    public $hydrogenAtom;
+    public $halogenAtom;
     /**
      * HydrogenHalide constructor.
      */
     public function __construct(IHalogen $halogen)
     {
-        $H = new Atom("H");
-        $H->addBond(new bond($halogen, "single"));
-        $halogen->addBond(new bond($H, "single"));
+        $this->halogenAtom = $halogen;
+        $this->hydrogenAtom = new Atom("H");
+        $this->hydrogenAtom->addBond(new Bond($halogen, "single"));
+        $halogen->addBond(new Bond($this->hydrogenAtom, "single", uniqid()));
         parent::__construct(new Atom("H"), $halogen);
     }
 }
