@@ -14,8 +14,10 @@ class HydrogenHalide extends Molecule implements IHydrogenHalide
     /**
      * HydrogenHalide constructor.
      */
-    public function __construct(IHalogen $halogen)
+    public function __construct(MoleculeComponent $molecule, IHalogen $halogen)
     {
+        parent::__construct($molecule);
+
         $this->halogenAtom = $halogen;
         $this->hydrogenAtom = new Atom("H");
         $this->hydrogenAtom->addBond(new Bond($halogen, "single"));

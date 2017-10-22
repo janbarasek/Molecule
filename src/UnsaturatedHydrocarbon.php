@@ -7,6 +7,14 @@ namespace kdaviesnz\molecule;
 class UnsaturatedHydrocarbon extends Hydrocarbon
 {
 
+    /**
+     * UnsaturatedHydrocarbon constructor.
+     */
+    public function __construct(MoleculeComponent $molecule)
+    {
+        parent::__construct($molecule);
+    }
+
     public function freeRadicalHalogenation(): array
     {
         // TODO: Implement freeRadicalHalogenation() method.

@@ -16,9 +16,9 @@ class Alkene extends UnsaturatedHydrocarbon implements IAlkene
      * @param $carbonAtomWithDoubleBond
      * @param $doubleBond
      */
-    public function __construct(IAtom ... $atoms)
+    public function __construct(MoleculeComponent $molecule)
     {
-        parent::__construct(...$atoms);
+        parent::__construct($molecule);
         $this->carbonAtomWithDoubleBond = $this->getCarbonAtomWithDoubleBond();
         $bonds = $this->carbonAtomWithDoubleBond->getBonds();
         foreach ($bonds as $bond) {
@@ -52,7 +52,7 @@ class Alkene extends UnsaturatedHydrocarbon implements IAlkene
         }
 
         if (empty($atom)) {
-            throw new Exception("Carbon atom with double bond not found in alkene.");
+            throw new \Exception("Carbon atom with double bond not found in alkene.");
         }
         // We should never get here.
         return $atom;

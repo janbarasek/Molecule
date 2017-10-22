@@ -16,4 +16,6 @@ interface IMolecule
 
     public function getAtoms():array;
 
+    public function getResonanceStructures():array;
+
 }

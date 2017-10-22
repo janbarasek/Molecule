@@ -6,6 +6,12 @@ namespace kdaviesnz\molecule;
 
 class Alkane extends SaturatedHydrocarbon implements IAlkane
 {
+
+    public function __construct(MoleculeComponent $molecule)
+    {
+        parent::__construct($molecule);
+    }
+
     public function prefix(int $carbonCount)
     {
         $map = array(

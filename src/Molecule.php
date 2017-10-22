@@ -7,10 +7,8 @@ use kdaviesnz\atom\IAtom;
 use kdaviesnz\matter\Matter;
 
 
-class Molecule implements IMolecule
+class Molecule extends MoleculeComponent
 {
-
-    protected $atoms = array();
 
     /**
      * Molecule constructor.

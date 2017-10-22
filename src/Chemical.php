@@ -4,7 +4,7 @@ declare(strict_types = 1); // must be first line
 namespace kdaviesnz\molecule;
 
 
-class Chemical extends IMolecule implements IChemical, IMolecule
+class Chemical implements IChemical
 {
     private $pubChemId = "";
     private $IUPACName = "";
