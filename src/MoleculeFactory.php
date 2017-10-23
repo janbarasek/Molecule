@@ -8,10 +8,14 @@ use kdaviesnz\atom\IAtom;
 
 class MoleculeFactory extends Factory
 {
-
-    protected function factoryMethod(IAtom...$atoms)
+    public function __construct(array $atoms)
     {
+        $this->factoryMethod($atoms);
+    }
 
+    protected function factoryMethod(array $atoms)
+    {
+        $this->molecule = new Molecule($atoms);
     }
 
 }
