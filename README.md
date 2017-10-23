@@ -37,7 +37,7 @@ $ composer require kdaviesnz/molecule
 
 ``` php
         $fc = new \kdaviesnz\molecule\FactoryClient();
-        $molecule = $fc->getMolecule("C-C=C-(O-H)CC");
+        $molecule = $fc->getMolecule("C1=C-C=C-C=C1");
         var_dump(get_class($molecule));
 
 ```

@@ -10,6 +10,25 @@ use kdaviesnz\atom\Bond;
 
 class Operations
 {
+
+    public function addLoopBonds(array $atoms):array
+    {
+        $bases = array();
+        foreach ($atoms as $k=>$atom) {
+            preg_match('/[0-9]*$/', $atom->chem, $matches);
+            if (!empty($matches)){
+                if (isset($bases[$matches[0]])) {
+                    // Add bond
+                    $id = uniqid();
+                    $atoms[$k]->addBond(new Bond($bases[$matches[0]], $id));
+                } else {
+                   $bases[$matches[0]] = $atom;
+                }
+            }
+        }
+        return $atoms;
+    }
+
     public function renderAtomsSimplified(array $atoms):array
     {
         $arr = array();
@@ -17,7 +36,7 @@ class Operations
             $bonds = $atom->getBonds();
             $bondTypes = array();
             foreach ($bonds as $bond) {
-                $bondTypes[] = $bond->getType() . " " . ($bond->isRecip?"recip":"not recip");
+                $bondTypes[] = $bond->getType() . " " . ($bond->isRecip?"recip":"not recip") . " " . $bond->getId();
             }
             $arr[] = array(
                 "chem"=>$atom->chem,
@@ -101,28 +120,27 @@ class Operations
         // Add each item in trunk to $atoms array as IAtom and adding bonds between each atom.
         // "C-C=C-(O-H)"
         // "C-C=C-(O-H)"
-
-        $trunkItems = str_split($trunk); // First pass array("C","C","=","C","1", "C")
+        preg_match_all("/[A-Z]+[0-9]*|[\-|\=]*/", $trunk, $matches);
+        $trunkItems = array_filter($matches[0]);
 
         $atomsToAdd = (array_filter(
             $trunkItems,
             function($item) {
-                return  ctype_alpha($item);
+                return  ctype_alnum($item);
             }
         ));
+
         $atomsToAdd = array_map(
             function($item) {
                 return new Atom($item);
             },
             $atomsToAdd
         );
+
+
         $atomsToAdd = $this->addBonds($atomsToAdd, $trunkItems);
 
         $atoms = array_merge($atoms, $atomsToAdd);
-
-        /*
-
-        */
 
         // Repeat from start for each item in the branch, adding a bond between the atom at $position and the
         // first atom of the branch.

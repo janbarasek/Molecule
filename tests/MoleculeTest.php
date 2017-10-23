@@ -21,9 +21,11 @@ class MoleculeTest extends PHPUnit_Framework_TestCase
     {
 
         $fc = new \kdaviesnz\molecule\FactoryClient();
-        $molecule = $fc->getMolecule("C-C=C-(O-H)CC");
+        $molecule = $fc->getMolecule("C1=C-C=C-C=C1");
         var_dump(get_class($molecule));
 
+        // CC1=CC2=C(C=C1)OCO2
+        // CC1=CC2=COCO2
 
       //  $molecule = new \kdaviesnz\molecule\FactoryClient("CC(CC1=CC2=C(C=C1)OCO2)NC");
     }
