@@ -10,7 +10,7 @@ use kdaviesnz\atom\Bond;
 
 class Operations
 {
-    public function displayAtomsSimplified(array $atoms)
+    public function renderAtomsSimplified(array $atoms):array
     {
         $arr = array();
         foreach($atoms as $key=>$atom) {
@@ -24,7 +24,7 @@ class Operations
                 "bonds"=>$bondTypes
             );
         }
-        var_dump($arr);
+        return $arr;
     }
 
     public function atomsToCanonicalSMILE(array $atoms):string
@@ -88,18 +88,20 @@ class Operations
         return $atomsToAdd;
     }
 
-    public function addBranches(string $canonicalSMILE, array &$atoms)
+    public function addBranches(string $canonicalSMILE, array &$atoms, $position=null)
     {
 
         preg_match("/\((.*)\)/", $canonicalSMILE, $matches); // First pass CC=C1C
-        $position = null;
-        $branch = null;
         if (isset($matches[1])) {
-            $position = strpos($canonicalSMILE, "(")-1; // First pass 0
             $branch = $matches[1]; // First pass ""
+        } else {
+            $branch = "";
         }
-        $trunk = str_replace("(".$branch.")", "", $canonicalSMILE); // First pass CC=C1C
+        $trunk = rtrim(str_replace("(".$branch.")", "", $canonicalSMILE),"-"); // First pass CC=C1C
         // Add each item in trunk to $atoms array as IAtom and adding bonds between each atom.
+        // "C-C=C-(O-H)"
+        // "C-C=C-(O-H)"
+
         $trunkItems = str_split($trunk); // First pass array("C","C","=","C","1", "C")
 
         $atomsToAdd = (array_filter(
@@ -118,22 +120,26 @@ class Operations
 
         $atoms = array_merge($atoms, $atomsToAdd);
 
-        if ($position!=0) {
-            // merge branch
-            $id = uniqid();
-            $this->displayAtomsSimplified($atoms);
-            die();
-            $atoms[$position-1]->addBond(new Bond($atomsToAdd[0], $id));
-            $atomsToAdd[0]->addBond(new Bond($atoms[$position], $id, "single", 0.00, true));
-        }
+        /*
 
+        */
 
         // Repeat from start for each item in the branch, adding a bond between the atom at $position and the
         // first atom of the branch.
         // Keep repeating until there's no more branches.
 
-        if (!empty($branch)) {
-            $this->addBranches($branch, $atoms);
+        if (!empty($canonicalSMILE)) {
+            if (!is_null($position)) {
+                // merge branch
+                $id = uniqid();
+                $atoms[$position]->addBond(new Bond($atomsToAdd[0], $id));
+                $atomsToAdd[0]->addBond(new Bond($atoms[$position], $id, "single", 0.00, true));
+            }
+            $position = strpos(str_replace(array("-", "="), array(""), $canonicalSMILE), "(")-1; // First pass 0
+          //  var_dump($position);
+         //   var_dump($branch);
+           // die();
+            $this->addBranches($branch, $atoms, $position);
         }
 
     }
