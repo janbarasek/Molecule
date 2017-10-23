@@ -36,26 +36,9 @@ $ composer require kdaviesnz/molecule
 ## Usage
 
 ``` php
-        // Create water molecule
-        $H1 = new \kdaviesnz\chemistry\Atom("H");
-        $H2 = new \kdaviesnz\chemistry\Atom("H");
-        $O = new \kdaviesnz\chemistry\Atom("O");
-
-        // Bonds
-        $H1->addBond(
-            new \kdaviesnz\chemistry\Bond($O)
-        );
-        $H2->addBond(
-            new \kdaviesnz\chemistry\Bond($O)
-        );
-        $O->addBond(
-            new \kdaviesnz\chemistry\Bond($H1)
-        );
-        $O->addBond(
-            new \kdaviesnz\chemistry\Bond($H2)
-        );
-
-        $molecule = new \kdaviesnz\chemistry\Molecule($H1, $H2, $O);
+       $fc = new \kdaviesnz\molecule\FactoryClient();
+        $molecule = $fc->getMolecule("C-C=C-C");
+        var_dump(get_class($molecule));
 ```
 
 ## Change log

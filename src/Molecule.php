@@ -13,7 +13,7 @@ class Molecule extends MoleculeComponent
     /**
      * Molecule constructor.
      */
-    public function __construct(IAtom ... $atoms)
+    public function __construct(array $atoms)
     {
         $this->atoms = $atoms;
     }

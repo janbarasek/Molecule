@@ -32,8 +32,8 @@ class Alkene extends UnsaturatedHydrocarbon implements IAlkene
 
     public function getCarbonAtomWithDoubleBond():IAtom
     {
-        $atom = null;
-        $atoms = $this->atoms;
+        $operations = new Operations();
+        $atoms = $this->molecule->getAtoms();
         $carbonAtoms = array_filter(
             $atoms,
             function($atom) use($atoms) {
@@ -45,7 +45,7 @@ class Alkene extends UnsaturatedHydrocarbon implements IAlkene
             $bonds = $atom->getBonds();
             foreach ($bonds as $bond) {
                 $bondedAtom = $bond->getBondedElement();
-                if ($bondedAtom->symbol()=="C" && $bond->getType()=="double") {
+                if ($bondedAtom->symbol()=="C" && $bond->getType()=="double" && $bond->isRecip) {
                     return $atom;
                 }
             }

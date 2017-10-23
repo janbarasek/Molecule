@@ -7,11 +7,11 @@ use kdaviesnz\atom\IAtom;
 
 abstract class Factory
 {
-    protected abstract function factoryMethod(IAtom...$atoms);
+    protected abstract function factoryMethod(array $atoms);
+    protected $molecule;
 
-    public function startFactory(IAtom...$atoms):IMolecule
+    public function getMolecule():IMolecule
     {
-        $mfg = $this->factoryMethod(...$atoms);
-        return $mfg;
+        return $this->molecule;
     }
 }

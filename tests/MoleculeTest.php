@@ -19,7 +19,13 @@ class MoleculeTest extends PHPUnit_Framework_TestCase
 
     public function testMolecule()
     {
-        $molecule = new \kdaviesnz\molecule\FactoryClient("CC(CC1=CC2=C(C=C1)OCO2)NC");
+
+        $fc = new \kdaviesnz\molecule\FactoryClient();
+        $molecule = $fc->getMolecule("C-C=C-C");
+        var_dump(get_class($molecule));
+
+
+      //  $molecule = new \kdaviesnz\molecule\FactoryClient("CC(CC1=CC2=C(C=C1)OCO2)NC");
     }
 
 }
