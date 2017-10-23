@@ -33,9 +33,7 @@ class FactoryClient
 
       //  print_r($atoms);
         $this->operations->atomsToCanonicalSMILE($atoms);
-
-        var_dump($this->operations->renderAtomsSimplified($atoms));
-
+        
 
         // Logic to determine what type of factory eg AlkeneFactory, AmineFactory, MoleculeFactory
         // @todo
