@@ -1,17 +1,22 @@
 <?php
-declare(strict_types=1); // must be first line
+
+declare(strict_types=1);
 
 namespace kdaviesnz\molecule;
+
 
 use kdaviesnz\atom\IAtom;
 
 abstract class Factory
 {
-    protected abstract function factoryMethod(array $atoms);
-    protected $molecule;
+	protected $molecule;
 
-    public function getMolecule():IMolecule
-    {
-        return $this->molecule;
-    }
+
+	public function getMolecule(): IMolecule
+	{
+		return $this->molecule;
+	}
+
+
+	protected abstract function factoryMethod(array $atoms);
 }

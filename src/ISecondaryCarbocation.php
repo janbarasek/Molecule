@@ -1,13 +1,13 @@
 <?php
-declare(strict_types=1); // must be first line
+
+declare(strict_types=1);
 
 namespace kdaviesnz\molecule;
 
 
+/**
+ * Carbocation with two C-C+ bonds.
+ */
 interface ISecondaryCarbocation
 {
-    /*
-     Carbocation with two C-C+ bonds.
-     */
-
 }

@@ -1,21 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace kdaviesnz\molecule;
 
 
 interface IMolecule
 {
+	public function isNucleophile(): bool;
 
-    public function isNucleophile():bool;
+	public function isElectrophile(): bool;
 
-    public function isElectrophile():bool;
+	public function isChiral(): bool;
 
-    public function isChiral():bool;
+	public function hasChiralCentre(): bool;
 
-    public function hasChiralCentre():bool;
+	public function getAtoms(): array;
 
-    public function getAtoms():array;
-
-    public function getResonanceStructures():array;
-
+	public function getResonanceStructures(): array;
 }

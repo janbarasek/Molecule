@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace kdaviesnz\molecule;
@@ -6,20 +7,25 @@ namespace kdaviesnz\molecule;
 
 abstract class MoleculeComponent implements IMolecule
 {
+	protected $molecule;
 
-    protected $molecule;
-    protected $atoms = array();
+	protected $atoms = [];
 
-    abstract public function isNucleophile():bool;
 
-    abstract public function isElectrophile():bool;
+	abstract public function isNucleophile(): bool;
 
-    abstract public function isChiral():bool;
 
-    abstract public function hasChiralCentre():bool;
+	abstract public function isElectrophile(): bool;
 
-    abstract public function getAtoms():array;
 
-    abstract function getResonanceStructures():array;
+	abstract public function isChiral(): bool;
 
+
+	abstract public function hasChiralCentre(): bool;
+
+
+	abstract public function getAtoms(): array;
+
+
+	abstract function getResonanceStructures(): array;
 }
